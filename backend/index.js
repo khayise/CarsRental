@@ -20,5 +20,3 @@ mongoose
 	.connect(DB_URL)
 	.then(() => console.log('conected to db'))
 	.catch((e) => console.log('mongo error: ' + e.message));
-
-module.exports = app;
