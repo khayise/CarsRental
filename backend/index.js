@@ -14,7 +14,7 @@ const DB_URL = process.env.DATABASE_URL;
 
 app.listen(PORT, () => console.log('server was started on port ' + PORT));
 app.use(carsRouter);
-app.get('/1', (req, res) => res.status(200).send('DB_URL'));
+app.get('/1', (req, res) => res.status(200).send(DB_URL));
 
 mongoose
 	.connect(DB_URL)
