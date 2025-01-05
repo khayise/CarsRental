@@ -17,7 +17,7 @@ export const CarPage: React.FC<CarPageProps> = ({}) => {
 	const { carId } = useParams<{ carId: string }>();
 
 	async function fetchCar(carId: string) {
-		const car = await axios.get<ICar>(`http://localhost:3000/cars/${carId}`);
+		const car = await axios.get<ICar>(`${import.meta.env.VITE_BASE_URL}/cars/${carId}`);
 		return car.data;
 	}
 
