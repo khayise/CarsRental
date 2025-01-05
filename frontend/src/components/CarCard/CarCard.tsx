@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { ICar } from '../../types/ICar';
-
 import { Link } from 'react-router-dom';
 import { CarFullDescription } from '../../shared/CarFullDescription';
 import { useNavigateHandler } from '../../hooks/useNagivateHandler';

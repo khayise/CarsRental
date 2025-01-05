@@ -1,4 +1,3 @@
-import { ICar } from '../types/ICar';
 import { TSortDirections } from '../types/TSortDirections';
 
 export function sortCars(

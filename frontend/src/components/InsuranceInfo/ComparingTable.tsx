@@ -1,14 +1,13 @@
 import React from 'react';
 
-import { Table } from 'antd';
+import { Table, TableColumnsType } from 'antd';
 import { Advantage } from './Advantage';
 import { Disadvantage } from './Disadvantage';
 import { Situation } from './Situation';
-import { InsuranceSwitch } from './InsuranceSwitch';
 
 interface ComparingTableProps {}
 
-const columns = [
+const columns: TableColumnsType = [
 	{
 		title: <span className="font-bold">What is included in the coverage</span>,
 		dataIndex: 'situation',

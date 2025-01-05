@@ -5,7 +5,6 @@ import IconTransmition from '../assets/icons/transmisson.svg';
 import IconCalendar from '../assets/icons/calendar.svg';
 import IconEngine from '../assets/icons/engine.svg';
 import IconSeats from '../assets/icons/seats.svg';
-import { ICar } from '../types/ICar';
 
 interface CarFullDescriptionProps {
 	car: ICar;

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { ICar } from '../../types/ICar';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { useSearchParamsStore } from '../../store/searchParamsStore';
 
