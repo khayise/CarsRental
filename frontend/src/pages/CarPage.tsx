@@ -24,7 +24,6 @@ export const CarPage: React.FC<CarPageProps> = ({}) => {
 	const { data: car } = useQuery({
 		queryKey: [carId],
 		queryFn: () => fetchCar(carId as string),
-		enabled: !!carId,
 		staleTime: 1000 * 60 * 3,
 	});
 
