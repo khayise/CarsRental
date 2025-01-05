@@ -12,11 +12,13 @@ app.use(cors());
 const PORT = 3000;
 const DB_URL = process.env.DATABASE_URL;
 
-app.listen(PORT, () => console.log('server was started on port ' + PORT));
+// app.listen(PORT, () => console.log('server was started on port ' + PORT));
 app.use(carsRouter);
-app.get('/', (req, res) => res.status(200).send('hello'));
+// app.get('/', (req, res) => res.status(200).send('hello'));
 
 mongoose
 	.connect(DB_URL)
 	.then(() => console.log('conected to db'))
 	.catch((e) => console.log('mongo error: ' + e.message));
+
+module.exports = app;
