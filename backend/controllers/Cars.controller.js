@@ -12,7 +12,7 @@ class CarsController {
 			res.status(200).send(cars);
 		} catch (error) {
 			console.log(error.message);
-			res.status(404).send();
+			res.status(404).send(error.message);
 		}
 	}
 
@@ -22,7 +22,7 @@ class CarsController {
 			const car = await Cars.findById({ _id: id });
 			res.status(200).json(car);
 		} catch (error) {
-			res.status(404).send();
+			res.status(404).send(error.message);
 		}
 	}
 
@@ -33,7 +33,7 @@ class CarsController {
 			res.status(200).json(maxCarPrice.basePrice);
 		} catch (error) {
 			console.log(error.message);
-			res.status(404).send();
+			res.status(404).send(error.message);
 		}
 	}
 }
