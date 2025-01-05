@@ -1,6 +1,7 @@
 import React, { ChangeEvent } from 'react';
-import useSortStore from '../../../../store/sortStore';
-import { TSortDirections } from '../../../../types/TSortDirections';
+
+import { TSortDirections } from '../../../types/TSortDirections';
+import { useSortStore } from '../../../store/sortStore';
 
 interface SortSelectProps {}
 
@@ -14,7 +15,7 @@ export const SortSelect: React.FC<SortSelectProps> = ({}) => {
 		<>
 			<select
 				onChange={(e) => handleChange(e)}
-				className="text-my-gray-200 bg-transparent font-light text-base"
+				className="bg-transparent font-light text-base text-my-gray-200"
 				name="sortBy"
 				id="sortBy">
 				<option value="asc">Low to high</option>

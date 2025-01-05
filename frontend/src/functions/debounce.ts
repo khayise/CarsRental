@@ -17,12 +17,12 @@ export const debounce: TDebounce = function (callback, delay) {
 	};
 };
 
-export const trottle = function <T extends unknown[]>(
+export const throttle = function <T extends unknown[]>(
 	callback: (...args: T) => void,
 	delay: number = 1000,
 ) {
 	let shouldWait: boolean = false;
-	let waitingArgs: null | T;
+	let waitingArgs: T = [] as unknown as T; // Изменили с null на пустой массив
 
 	return (...args: T) => {
 		if (shouldWait) {
@@ -35,8 +35,10 @@ export const trottle = function <T extends unknown[]>(
 
 		setTimeout(() => {
 			shouldWait = false;
-			if (waitingArgs !== null) {
+			if (waitingArgs.length > 0) {
+				// Проверка на пустой массив
 				callback(...waitingArgs);
+				waitingArgs = [] as unknown as T; // Очистка waitingArgs после вызова
 			}
 		}, delay);
 	};

@@ -17,7 +17,7 @@ function generateDropOffDate() {
 const startDate = new Date();
 const endDate = generateDropOffDate();
 
-const useDateRangeStore = create<Store>()((set) => ({
+export const useDateRangeStore = create<Store>()((set) => ({
 	startDate,
 	endDate,
 	setDateRange: (changes) =>
@@ -27,5 +27,3 @@ const useDateRangeStore = create<Store>()((set) => ({
 			endDate: changes.selection.endDate,
 		})),
 }));
-
-export default useDateRangeStore;

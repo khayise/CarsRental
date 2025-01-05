@@ -1,11 +1,15 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CustomDateRange } from './CustomDateRange';
 import { AnimatePresence } from 'framer-motion';
-import useDateRangeStore from '../../../../store/dateRangeStore';
+import { formatDate } from '../../../functions/formatDate';
+import { UseFormRegister } from 'react-hook-form';
+import { useDateRangeStore } from '../../../store/dateRangeStore';
 
-interface FilterDateRangeProps {}
+interface FilterDateRangeProps {
+	register: UseFormRegister<any>;
+}
 
-export const FilterDateRange: React.FC<FilterDateRangeProps> = ({}) => {
+export const FilterDateRange: React.FC<FilterDateRangeProps> = ({ register }) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const buttonRef = useRef<HTMLButtonElement | null>(null);
 
@@ -13,20 +17,34 @@ export const FilterDateRange: React.FC<FilterDateRangeProps> = ({}) => {
 
 	const { startDate, endDate } = useDateRangeStore();
 
+	useEffect(() => {
+		if (startDate !== endDate) {
+			setIsOpen(false);
+		}
+	}, [startDate, endDate]);
+
+	const startDateString = formatDate(startDate);
+	const endDateString = formatDate(endDate);
+
 	return (
 		<>
-			<div className="relative flex flex-col gap-1">
-				<label htmlFor="" className="label">
-					Date
-				</label>
-				<button className="w-full text-start" onClick={handleClick} ref={buttonRef}>
-					{startDate.getDate()}.{startDate.getMonth() + 1}.{startDate.getFullYear()} -{' '}
-					{endDate.getDate()}.{endDate.getMonth() + 1}.{endDate.getFullYear()}
-				</button>
-				<AnimatePresence>
-					{isOpen && <CustomDateRange buttonRefCurrent={buttonRef.current} setIsOpen={setIsOpen} />}
-				</AnimatePresence>
-			</div>
+			<button type="button" className="w-full text-start" onClick={handleClick} ref={buttonRef}>
+				{startDateString} - {endDateString}
+			</button>
+			<AnimatePresence>
+				{isOpen && <CustomDateRange buttonRefCurrent={buttonRef.current} setIsOpen={setIsOpen} />}
+			</AnimatePresence>
+
+			<input
+				type="hidden"
+				{...register('startDate', { valueAsDate: true })}
+				value={startDate.toISOString().substring(0, 10)}
+			/>
+			<input
+				type="hidden"
+				{...register('endDate', { valueAsDate: true })}
+				value={startDate.toISOString().substring(0, 10)}
+			/>
 		</>
 	);
 };

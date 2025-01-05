@@ -7,11 +7,11 @@ interface CarsCarouselProps {
 }
 
 export const CarsCarousel: React.FC<CarsCarouselProps> = ({ limited }) => {
-	const data = useFetchCars();
+	const { data } = useFetchCars();
 
 	return (
 		<>
-			<ul className="flex w-full flex-wrap p-1 justify-center gap-4 mt-4">
+			<ul className="flex flex-wrap justify-center gap-4 mt-4 p-1 w-full">
 				{data?.slice(0, limited).map((car) => {
 					return (
 						<li key={car._id}>

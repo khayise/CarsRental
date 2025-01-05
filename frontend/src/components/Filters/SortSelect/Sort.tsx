@@ -7,12 +7,12 @@ interface SortProps {}
 export const Sort: React.FC<SortProps> = ({}) => {
 	return (
 		<>
-			<div className="justify-self-end flex flex-col ">
-				<div className="flex gap-1 items-center">
+			<div className="flex flex-col justify-self-end">
+				<div className="flex items-center gap-1">
 					<label className="text-my-black-500" htmlFor="">
-						Sort by
+						Sort
 					</label>
-					<SortIcon />
+					<SortIcon className="text-my-black-500" size={20} />
 				</div>
 
 				<SortSelect />

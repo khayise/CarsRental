@@ -1,5 +1,5 @@
-import { ICar } from '../../types/ICar';
-import { TSortDirections } from '../../types/TSortDirections';
+import { ICar } from '../types/ICar';
+import { TSortDirections } from '../types/TSortDirections';
 
 export function sortCars(
 	data: ICar[],

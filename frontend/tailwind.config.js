@@ -12,6 +12,7 @@ export default {
 			colors: {
 				'my-black-100': '#344054',
 				'my-black-500': '#101828',
+				'my-gray-light': '#D0D5DD',
 				'my-gray-100': '#667085',
 				'my-gray-200': '#475467',
 				'my-blue': '#155EEF',

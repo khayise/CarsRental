@@ -1,9 +1,10 @@
 import React from 'react';
-import { ICar } from '../../../types/ICar';
+
 import { CarFullDescription } from '../../shared/CarFullDescription';
-import { Card } from '../../shared/Card';
-import useDateRangeStore from '../../../store/dateRangeStore';
 import { Link } from 'react-router-dom';
+import { useDateRangeStore } from '../../store/dateRangeStore';
+import { MotionCard } from 'src/shared/MotionCard';
+import { appearAnimationConfig } from 'src/framer-configs/appear';
 
 interface CarListItemProps {
 	car: ICar;
@@ -19,26 +20,28 @@ export const CarListItem: React.FC<CarListItemProps> = ({ car }) => {
 	return (
 		<>
 			<Link to={`/cars/${car._id}`}>
-				<Card className="flex-grow justify-center flex-wrap flex gap-10">
-					<img className="h-[200px] w-[370px]" src={car.img} alt="" />
-					<div className="flex justify self-start  flex-col ">
-						<div className="flex flex-col self-start gap-4">
+				<MotionCard
+					animationConfig={appearAnimationConfig}
+					className="flex flex-wrap flex-grow justify-center gap-10 outline-my-gray hover:outline outline-1">
+					<img className="w-[370px] h-[200px]" src={car.img} alt="" />
+					<div className="flex flex-col justify self-start">
+						<div className="flex flex-col gap-4 self-start">
 							<h3 className="font-medium">{car.name}</h3>
 							<CarFullDescription car={car} />
 						</div>
 					</div>
-					<div className="flex flex-1 gap-y-6 flex-col justify-between">
+					<div className="flex flex-col flex-1 justify-between gap-y-6">
 						<div className="flex flex-col">
 							<span className="font-medium text-lg">
 								&#3647;{car.basePrice} <span className="font-normal"> per day</span>
 							</span>
-							<span className="text-base font-light text-my-gray-200">
+							<span className="font-light text-base text-my-gray-200">
 								Total: &#3647;{TOTAL} for {DAYS} {DAYS > 1 ? 'days' : 'day'}
 							</span>
 						</div>
-						<button className="button w-full min-w-40 text-white p-2 justify-self-end">Book</button>
+						<button className="justify-self-end p-2 w-full min-w-40 text-white button">Book</button>
 					</div>
-				</Card>
+				</MotionCard>
 			</Link>
 		</>
 	);

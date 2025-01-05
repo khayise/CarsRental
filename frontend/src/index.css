@@ -8,6 +8,8 @@
 	box-sizing: border-box;
 	font-family: 'Inter', sans-serif;
 	font-size: 16px;
+
+	--my-blue: #155eef;
 }
 
 body {
@@ -15,11 +17,27 @@ body {
 }
 
 select {
+	cursor: pointer;
 	padding: 0;
 	margin: 0;
 	border: none;
 	appearance: none;
 	position: relative;
+}
+
+input:focus {
+	@apply outline-none;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0; /* Убирает лишние отступы */
+}
+
+input[type='number'] {
+	-moz-appearance: textfield; /* Firefox */
+	appearance: none; /* Стандартное свойство */
 }
 
 h1 {
@@ -37,29 +55,67 @@ h3 {
 	@apply font-semibold;
 }
 
+@media (max-width: 500px) {
+	.rdrMonth {
+		max-width: 328px !important;
+	}
+}
+
 @layer components {
 	.bg-image {
-		background-image: url('/public/images/bgCar2.jpg');
+		background-image: url('/src/assets/images/bgCar2.jpg');
 		background-position: center;
 		background-size: cover;
 		background-repeat: no-repeat;
 		z-index: -20;
 	}
 
+	.partnership-bg-image {
+		background-image: url(https://img.freepik.com/free-photo/close-up-sales-manager-black-suit-selling-car-customer_146671-14738.jpg?t=st=1736081530~exp=1736085130~hmac=3b2939727310ef03671e1b73191f7a2b3e5e34d44f4d56f62851b4b827cfe135&w=1800);
+		background-position: center;
+		background-size: cover;
+		background-attachment: fixed;
+		background-repeat: no-repeat;
+		z-index: 0;
+	}
+
+	.partnership-blacked::after {
+		content: '';
+		z-index: 5;
+		@apply top-0 left-0 -z-10 absolute bg-black bg-opacity-40 w-full h-full;
+	}
+
 	.container {
-		@apply w-full max-w-[1280px] mx-6;
+		@apply mr-6 ml-6 w-full max-w-[1280px];
 	}
 
 	.blacked::after {
 		content: '';
-		@apply h-full w-full left-0 top-0 absolute bg-black bg-opacity-40 -z-10;
+		z-index: -10;
+		@apply top-0 left-0 -z-10 absolute bg-black bg-opacity-40 w-full h-full;
 	}
 
 	.label {
-		@apply text-my-black-500 text-md;
+		@apply text-md text-my-black-500;
 	}
 
 	.button {
-		@apply bg-my-blue active:scale-[0.99] disabled:opacity-90 duration-100 rounded-lg;
+		@apply bg-my-blue active:opacity-90 disabled:opacity-90 p-2 rounded-lg text-white duration-100 active:scale-[0.99];
+	}
+
+	.spinning {
+		animation: spinningAnimation infinite 1.7s;
+		animation-delay: 0;
+		animation-timing-function: linear;
+	}
+
+	@keyframes spinningAnimation {
+		from {
+			rotate: 0deg;
+		}
+
+		to {
+			rotate: 360deg;
+		}
 	}
 }

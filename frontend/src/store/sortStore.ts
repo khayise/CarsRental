@@ -6,9 +6,7 @@ type Store = {
 	set: (direction: TSortDirections) => void;
 };
 
-const useSortStore = create<Store>()((set) => ({
+export const useSortStore = create<Store>()((set) => ({
 	filterDirection: 'asc',
 	set: (direction) => set(() => ({ filterDirection: direction })),
 }));
-
-export default useSortStore;
