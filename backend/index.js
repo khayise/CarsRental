@@ -12,7 +12,7 @@ app.use(cors());
 const PORT = 3000;
 const DB_URL = process.env.DATABASE_URL;
 
-// app.listen(PORT, () => console.log('server was started on port ' + PORT));
+app.listen(PORT, () => console.log('server was started on port ' + PORT));
 app.use(carsRouter);
 // app.get('/', (req, res) => res.status(200).send('hello'));
 
