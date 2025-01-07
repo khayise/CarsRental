@@ -10,6 +10,8 @@ import { FreeCancelationAlert } from 'src/shared/FreeCancelationAlert';
 import { RentConditionsTabs } from 'src/shared/RentConditionsTabs';
 import { InsuranceInfo } from 'src/shared/InsuranceInfo';
 import { InsurancePriceObserver } from 'src/features/InsurancePriceObserver';
+import { CarFullDescriptionSkeleton } from 'src/shared/CarFullDescriptionSkeleton';
+import { Skeleton } from 'antd';
 
 interface CarPageProps {}
 
@@ -21,7 +23,7 @@ export const CarPage: React.FC<CarPageProps> = ({}) => {
 		return car.data;
 	}
 
-	const { data: car } = useQuery({
+	const { data: car, isLoading } = useQuery({
 		queryKey: [carId],
 		queryFn: () => fetchCar(carId as string),
 		staleTime: 1000 * 60 * 3,
@@ -34,10 +36,23 @@ export const CarPage: React.FC<CarPageProps> = ({}) => {
 					<div className="relative flex lg:flex-row flex-col gap-6 container">
 						<Card className="flex flex-col flex-grow gap-12 lg:self-start">
 							<div className="flex lg:flex-row flex-col gap-10 w-full">
-								<img className="w-[400px] h-[200px]" src={car?.img} alt="" />
+								{!isLoading ? (
+									<img className="w-[400px] h-[200px]" src={car?.img} alt="" />
+								) : (
+									<Skeleton.Image active style={{ width: 400, height: 200 }} />
+								)}
 								<div className="flex flex-col gap-2">
-									<h3 className="font-medium">{car?.name}</h3>
-									{car && <CarFullDescription car={car} />}
+									{!isLoading && car ? (
+										<>
+											<h3 className="font-medium">{car?.name}</h3>
+											<CarFullDescription car={car} />
+										</>
+									) : (
+										<>
+											<Skeleton.Input active />
+											<CarFullDescriptionSkeleton />
+										</>
+									)}
 								</div>
 							</div>
 							<FreeCancelationAlert />
